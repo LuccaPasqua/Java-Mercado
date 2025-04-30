@@ -22,8 +22,8 @@ public class Main {
 
         System.out.println(produtoService.gerarRelatorioEstoque());
 
-        ClientePessoaFisica joao = new ClientePessoaFisica(1,"João", "48111223344", "11122255438");
-        ClientePessoaJuridica senai = new ClientePessoaJuridica(2, "SENAI", "410093836", "03896121893636");
+        ClientePessoaFisica joao = new ClientePessoaFisica(1,"João", "48111223344", "39053344705");
+        ClientePessoaJuridica senai = new ClientePessoaJuridica(2, "SENAI", "410093836", "11444777000161");
 
         Venda vendaPessoaFisica =  new Venda(joao);
         Venda vendaPessoaJuridica = new Venda(senai);
