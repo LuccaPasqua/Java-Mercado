@@ -74,6 +74,7 @@ public class VendaService implements IVendaService{
 
     @Override
     public void efetuarVenda(Venda venda) {
+        vendas.add(venda);
         for(ItemVenda item: venda.getItens()){
             produtoService.removerProduto(item.getProduto(), item.getQuantidade());
         }

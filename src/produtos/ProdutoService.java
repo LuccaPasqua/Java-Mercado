@@ -39,7 +39,20 @@ public class ProdutoService implements IProdutoService{
     }
 
     @Override
+    public void editarProduto(Produto produto, String nome, double preco) {
+        if(produto != null) {
+            produto.setNome(nome);
+            produto.setPreco(preco);
+        }
+    }
+
+    @Override
     public List<Produto> gerarRelatorioEstoque() {
         return produtos;
+    }
+
+    @Override
+    public Produto consultarProduto(Produto produto) {
+        return produto;
     }
 }
