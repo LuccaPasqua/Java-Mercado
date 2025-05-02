@@ -41,8 +41,8 @@ public class Venda {
         System.out.println("Venda ID: " + id);
         System.out.println("Cliente: " + cliente.getNome());
         itens.forEach(item -> System.out.println("Item: " + item.getNome() + ", Quantidade: " + item.getQuantidade()));
-        System.out.println("Desconto aplicado: R$" + desconto);
-        System.out.println("Total final: R$" + valorTotal);
+        System.out.printf("Desconto aplicado: R$%.2f%n", desconto);
+        System.out.printf("Total final: R$%.2f%n", valorTotal);
         System.out.println("Data: "+ dataFormatada);
         System.out.println("Hora: " + horaFormatada);
     }
