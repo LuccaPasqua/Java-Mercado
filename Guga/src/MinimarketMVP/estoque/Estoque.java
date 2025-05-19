@@ -27,8 +27,31 @@ public class Estoque {
     }
 
     public void exibirEstoque() {
-        for (Produto p : produtos.values()) {
-            System.out.println(p.getNome() + " - Preço: R$" + p.getPreco() + " - Quantidade: " + p.getQuantidade());
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado.");
+        } else {
+            for (Produto p : produtos.values()) {
+                System.out.printf("• %s | Preço: R$%.2f | Quantidade: %d\n",
+                        p.getNome(), p.getPreco(), p.getQuantidade());
+            }
         }
     }
+
+    public void editarProduto(String nomeAntigo, String novoNome, double novoPreco, int novaQuantidade) {
+        Produto produto = produtos.get(nomeAntigo);
+        if (produto == null) {
+            throw new RuntimeException("Produto não encontrado: " + nomeAntigo);
+        }
+
+        // Se o nome mudar, precisa ajustar a chave do Map
+        if (!nomeAntigo.equals(novoNome)) {
+            produtos.remove(nomeAntigo);
+            produto.setNome(novoNome);
+            produtos.put(novoNome, produto);
+        }
+
+        produto.setPreco(novoPreco);
+        produto.setQuantidade(novaQuantidade);
+    }
 }
+
