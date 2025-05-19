@@ -29,8 +29,13 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
-    public Cliente mostrarCliente(Cliente cliente) {
-        return cliente;
+    public Cliente mostrarCliente(int id) {
+        for(Cliente cliente: clientes){
+            if( cliente.getId() == id){
+                return cliente;
+            }
+        }
+        return null;
     }
 
     @Override

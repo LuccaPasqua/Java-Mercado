@@ -12,5 +12,5 @@ public interface IVendaService {
     List<Venda> listarVendas();
     Venda buscarVendasPorCliente(Cliente cliente);
     void efetuarVenda(Venda venda);
-
+    Venda buscarUmaVenda(int id);
 }

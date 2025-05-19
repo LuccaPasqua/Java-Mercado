@@ -1,16 +1,23 @@
 package produtos;
 
 public class Produto {
-    private int id;
+    private final int id;
     private String nome;
     private double preco;
     private int estoque;
 
     public Produto(int id, String nome, double preco) {
+        if(nome == null || nome.trim().isEmpty()){
+            throw new IllegalArgumentException("Nome do produto não pode ser null nem vazio");
+        }
+        if(preco < 0 ) {
+            throw new IllegalArgumentException("Preço do produto não pode ser negativo");
+        }
+
         this.id = id;
         this.nome = nome;
         this.preco = preco;
-//        this.estoque = estoque;
+        this.estoque = 0;
     }
 
     public int getId() {
@@ -22,6 +29,9 @@ public class Produto {
     }
 
     public void setNome(String nome) {
+        if(nome == null || nome.trim().isEmpty()){
+            throw new IllegalArgumentException("Nome do produto não pode ser null ou vazio");
+        }
         this.nome = nome;
     }
 
@@ -30,6 +40,9 @@ public class Produto {
     }
 
     public void setPreco(double preco) {
+        if(preco < 0){
+            throw new IllegalArgumentException("Preço do produto não pode ser negativo.");
+        }
         this.preco = preco;
     }
 

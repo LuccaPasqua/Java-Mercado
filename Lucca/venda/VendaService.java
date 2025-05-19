@@ -79,7 +79,18 @@ public class VendaService implements IVendaService{
             produtoService.removerProduto(item.getProduto(), item.getQuantidade());
         }
     }
-//    @Override
+
+    @Override
+    public Venda buscarUmaVenda(int id) {
+        for(Venda venda : vendas){
+            if(venda.getId() == id) {
+                return venda;
+            }
+        }
+        return null;
+    }
+
+    //    @Override
 //    public void efetuarVenda(Venda venda) {
 //        for(ItemVenda item: venda.getItens()){
 //            produtoService.removerProduto(item.getProduto(), item.getQuantidade());

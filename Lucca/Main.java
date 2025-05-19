@@ -1,6 +1,7 @@
 import cliente.ClientePessoaFisica;
 import cliente.ClientePessoaJuridica;
 import cliente.ClienteService;
+import database.CriarTabelas;
 import produtos.Produto;
 import produtos.ProdutoService;
 import venda.Venda;
@@ -8,6 +9,8 @@ import venda.VendaService;
 
 public class Main {
     public static void main(String[] args) {
+        CriarTabelas criador = new CriarTabelas();
+        criador.criar();
 
         //Criaçao dos sercice's
         ProdutoService produtoService = new ProdutoService();
@@ -37,7 +40,7 @@ public class Main {
         System.out.println(produtoService.gerarRelatorioEstoque());
 
         //Criação de Clientes
-        ClientePessoaFisica joao = new ClientePessoaFisica(1,"João", "48111223344", "39053344705");
+        ClientePessoaFisica joao = new ClientePessoaFisica(1,"João", "4811223344", "39053344705");
         ClientePessoaJuridica senai = new ClientePessoaJuridica(2, "SENAI", "410093836", "11444777000161");
 
         //Adicionando clientes ao projeto
@@ -54,7 +57,7 @@ public class Main {
         System.out.println(clienteService.listarTodosClientes());
 
         //Lista apenas um Cliente, no caso senai
-//        System.out.println(clienteService.mostrarCliente(senai));
+        System.out.println(clienteService.mostrarCliente(2));
 
 
         //Aqui as vendas são criadas
