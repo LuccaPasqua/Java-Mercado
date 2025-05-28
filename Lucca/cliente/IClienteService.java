@@ -7,6 +7,6 @@ public interface IClienteService {
     void adicionarCliente(Cliente cliente);
     void removerCliente(Cliente cliente);
     void editarCliente(Cliente cliente, String novoNome, String novoTelefone);
-    Cliente mostrarCliente(Cliente cliente);
+    Cliente mostrarCliente(int id);
     List<Cliente> listarTodosClientes();
 }

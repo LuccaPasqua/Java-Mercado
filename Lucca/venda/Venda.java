@@ -12,20 +12,20 @@ import java.util.List;
 import java.util.UUID;
 
 public class Venda {
-    private String id;
+    private int id;
     private LocalDateTime dataHora;
     private Cliente cliente;
     private List<ItemVenda> itens;
 
     public Venda(Cliente cliente) {
-        this.id = UUID.randomUUID().toString().substring(0,8);
+//        this.id = UUID.randomUUID().toString().substring(0,8);
         this.dataHora = LocalDateTime.now();
         this.itens = new ArrayList<ItemVenda>();
         this.cliente = cliente;
     }
 
     public Venda(){
-        this.id = UUID.randomUUID().toString().substring(0,8);
+//        this.id = UUID.randomUUID().toString().substring(0,8);
         this.dataHora = LocalDateTime.now();
         this.itens = new ArrayList<>();
     }
@@ -55,7 +55,7 @@ public class Venda {
         this.itens = itens;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -76,7 +76,7 @@ public class Venda {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder( "Venda em " + getDataHora() + ":\n \n");
+        StringBuilder stringBuilder = new StringBuilder( "\nVenda em " + getDataHora() + ":\n "+ getId() +" \n");
         if(cliente != null){
             stringBuilder.append("    ").append(cliente.getNome()).append("\n \n");
         }
