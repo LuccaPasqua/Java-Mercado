@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MiniMercado.iml" filepath="$PROJECT_DIR$/MiniMercado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MinimarketMVP.iml" filepath="$PROJECT_DIR$/MinimarketMVP.iml" />
     </modules>
   </component>
 </project>
