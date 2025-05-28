@@ -1,4 +1,4 @@
-package MinimarketMVP.vendas;
+package vendas;
 
 public class ItemVenda {
     private int id;
@@ -23,5 +23,9 @@ public class ItemVenda {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public double getPreco() {
+        return  preco;
     }
 }

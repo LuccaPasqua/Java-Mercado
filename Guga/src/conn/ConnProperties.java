@@ -1,4 +1,4 @@
-package MinimarketMVP.conn;
+package conn;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,11 +12,13 @@ public class ConnProperties {
     private static String usuario = null;
     private static String senha = null;
 
-    private static Connection conn;
+    public static Connection conn;
+
+    // Adicionado controle para evitar repetição da mensagem
+    private static boolean conexaoEstabelecida = false;
 
     public static void carregarPropriedades() {
         if (url != null) {
-            // já foi carregado, não precisa carregar novamente
             return;
         }
 
@@ -31,15 +33,18 @@ public class ConnProperties {
         }
     }
 
-    public static Connection getConnection() {
-        if (conn != null) {
+    public static Connection getConnection() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
             return conn;
         }
 
         carregarPropriedades();
         try {
             conn = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Conexao estabelecida com sucesso!");
+            if (!conexaoEstabelecida) {
+                System.out.println("Conexao estabelecida com sucesso!");
+                conexaoEstabelecida = true;
+            }
         } catch (SQLException e) {
             System.err.println("Erro de SQL na conexao: " + e.getMessage());
         } catch (Exception e) {
@@ -57,6 +62,5 @@ public class ConnProperties {
         } catch (Exception e) {
             System.err.println("Erro no encerramento da conexao: " + e.getMessage());
         }
-        conn = null;
     }
 }

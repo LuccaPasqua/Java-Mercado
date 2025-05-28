@@ -1,4 +1,4 @@
-package MinimarketMVP.clientes;
+package clientes;
 
 public class Cliente {
     private final int id;

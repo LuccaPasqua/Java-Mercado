@@ -1,4 +1,4 @@
-package MinimarketMVP.estoque;
+package estoque;
 
 public class Produto {
     private String nome;
@@ -37,7 +37,7 @@ public class Produto {
 
     public void reduzirQuantidade(int quantidadeVendida) {
         if (quantidadeVendida > this.quantidade) {
-            throw new RuntimeException("Estoque insuficiente para o produto: " + nome);
+            throw new EstoqueInsuficienteException("Estoque insuficiente para o produto: " + nome);
         }
         this.quantidade -= quantidadeVendida;
     }

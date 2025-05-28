@@ -1,6 +1,7 @@
-package MinimarketMVP.vendas;
+package vendas;
 
-import MinimarketMVP.clientes.Cliente;
+import clientes.Cliente;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

@@ -1,6 +1,6 @@
-package MinimarketMVP.vendas;
+package vendas;
 
-import MinimarketMVP.clientes.Categoria;
+import clientes.Categoria;
 
 import java.util.HashMap;
 import java.util.Map;
