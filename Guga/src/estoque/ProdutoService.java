@@ -4,7 +4,7 @@ import conn.ConnProperties;
 
 import java.sql.*;
 
-public class Estoque {
+public class ProdutoService {
 
     public void adicionarProduto(String nome, double preco, int quantidade) {
         String sql = "INSERT INTO estoque (nome, preco, quantidade) VALUES (?, ?, ?)";
@@ -18,10 +18,10 @@ public class Estoque {
             stmt.executeUpdate();
             System.out.println("Produto adicionado ao banco de dados.");
 
-        } catch (SQLIntegrityConstraintViolationException e) {
+        } catch (SQLIntegrityConstraintViolationException ec) {
             throw new ProdutoRepetidoException("Erro: produto com esse nome já existe.");
-        } catch (SQLException e) {
-            throw new ConexaoBancoException("Erro ao adicionar produto: " + e.getMessage());
+        } catch (SQLException ec) {
+            throw new ConexaoBancoException("Erro ao adicionar produto: " + ec.getMessage());
         }
     }
 
@@ -73,7 +73,6 @@ public class Estoque {
 
         } catch (SQLException e) {
             throw new ConexaoBancoException("Erro ao buscar preço: " + e.getMessage());
-            //throw new Exception("iii", e);
         }
     }
 
@@ -116,7 +115,7 @@ public class Estoque {
             ResultSet rs = verificarStmt.executeQuery();
 
             if (rs.next() && rs.getInt(1) > 0) {
-                throw new ConexaoBancoException("Erro: já existe um produto com o nome '" + novoNome + "'.");
+                throw new ProdutoRepetidoException("Erro: já existe um produto com o nome '" + novoNome + "'.");
             }
 
             // Atualiza o produto
@@ -132,8 +131,8 @@ public class Estoque {
                 throw new ProdutoNaoEncontradoException("Produto não encontrado: " + nomeAntigo);
             }
 
-        } catch (SQLException e) {
-            throw new ConexaoBancoException("Erro ao editar produto: " + e.getMessage());
+        } catch (SQLException ec) {
+            throw new ConexaoBancoException("Erro ao editar produto: " + ec.getMessage());
         }
     }
 }

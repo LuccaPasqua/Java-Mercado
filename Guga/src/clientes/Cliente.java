@@ -47,4 +47,12 @@ public class Cliente {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Cliente: %s | CPF: %s | Telefone: %s | Categoria: %s",
+                nome, cpf, telefone, categoria
+        );
+    }
 }

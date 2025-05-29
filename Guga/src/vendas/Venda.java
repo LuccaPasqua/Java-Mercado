@@ -7,6 +7,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Venda {
+    public int getId() {
+        return id;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public double getDesconto() {
+        return desconto;
+    }
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
     private int id;
     private LocalDateTime dataHora;
     private Cliente cliente;
@@ -42,7 +62,7 @@ public class Venda {
         System.out.println("Venda ID: " + id);
         System.out.println("Cliente: " + cliente.getNome());
         itens.forEach(item -> System.out.println("Item: " + item.getNome() + ", Quantidade: " + item.getQuantidade()));
-        System.out.printf("Desconto aplicado: R$%.2f%n", desconto);
+        System.out.printf("Desconto aplicado: " + desconto + "%%\n");
         System.out.printf("Total final: R$%.2f%n", valorTotal);
         System.out.println("Data: "+ dataFormatada);
         System.out.println("Hora: " + horaFormatada);

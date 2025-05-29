@@ -6,32 +6,34 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-
 import java.sql.ResultSet;
 
 public class ClienteService {
 
-    public void adicionarCliente(int id, String cpf, String nome, String telefone, Categoria categoria) {
+    public void adicionarCliente(String cpf, String nome, String telefone, Categoria categoria) {
         validarDados(cpf, nome, telefone, categoria);
 
-        String sql = "INSERT INTO clientes (id, cpf, nome, telefone, categoria) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (cpf, nome, telefone, categoria) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConnProperties.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setInt(1, id);
-            stmt.setString(2, cpf);
-            stmt.setString(3, nome);
-            stmt.setString(4, telefone);
-            stmt.setString(5, categoria.name());
+            stmt.setString(1, cpf);
+            stmt.setString(2, nome);
+            stmt.setString(3, telefone);
+            stmt.setString(4, categoria.name());
             stmt.executeUpdate();
 
-            System.out.println("Cliente adicionado com sucesso ao banco!");
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int idGerado = generatedKeys.getInt(1);
+                System.out.println("Cliente adicionado com sucesso! ID gerado: " + idGerado);
+            }
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.err.println("Erro: CPF ou ID já cadastrado no banco.");
+            throw new ClienteDuplicadoException("Erro: CPF já cadastrado no banco.");
         } catch (SQLException e) {
-            System.err.println("Erro ao salvar cliente no banco: " + e.getMessage());
+            throw new ConexaoBancoException("Erro ao salvar cliente no banco: " + e.getMessage());
         }
     }
 
