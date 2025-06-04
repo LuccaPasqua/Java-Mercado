@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class EscritorPDF {
+public class EscritorPdf {
     public void escreverNotaFiscal(String nomeArquivo, Venda venda) {
         Document document = new Document();
         try {

@@ -1,7 +1,7 @@
 import clientes.*;
 import estoque.EstoqueInsuficienteException;
 import estoque.ProdutoRepetidoException;
-import vendas.EscritorPDF;
+import vendas.EscritorPdf;
 import vendas.ItemVenda;
 import vendas.Venda;
 import vendas.VendaService;
@@ -97,7 +97,7 @@ public class Main {
         produtoService.exibirEstoque();
         System.out.println("-".repeat(62));
 
-        EscritorPDF escritorPDF = new EscritorPDF();
+        EscritorPdf escritorPDF = new EscritorPdf();
         try {
             escritorPDF.escreverNotaFiscal("nota_fiscal" + venda.getId() + ".pdf", venda);
         } catch (EstoqueInsuficienteException ec) {
